@@ -206,7 +206,6 @@ def mkdir(request):
     }, context_instance=Context(request))
 mkdir = staff_member_required(never_cache(mkdir))
 
-
 # upload signals
 filebrowser_pre_upload = Signal(providing_args=["path", "file"])
 filebrowser_post_upload = Signal(providing_args=["path", "file"])
