@@ -71,9 +71,10 @@ def upload(request):
 upload = staff_member_required(never_cache(upload))
 
 # Uploadify handler
-from uploadify.views import upload_received
-def uploadify_received_handler(sender, request, data, **kwargs):
-    if (sender=='filebrowser'):
-        return file_process(request)
-upload_received.connect(uploadify_received_handler)
+if USE_UPLOADIFY:
+    from uploadify.views import upload_received
+    def uploadify_received_handler(sender, request, data, **kwargs):
+        if (sender=='filebrowser'):
+            return file_process(request)
+    upload_received.connect(uploadify_received_handler)
 
